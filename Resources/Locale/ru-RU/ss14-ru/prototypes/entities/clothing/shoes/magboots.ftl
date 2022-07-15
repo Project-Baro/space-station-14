@@ -1,0 +1,12 @@
+ent-ClothingShoesBootsMag = магнитные сапоги
+    .desc = Магнитные сапоги, используемые во время работы вне корабля, чтобы оставаться надёжно прикреплённым к поверхности.
+    .suffix = { "" }
+ent-ClothingShoesBootsMagAdv = продвинутые магнитные сапоги
+    .desc = Новейшие магнитные ботинки, которые не замедляют движения своего владельца.
+    .suffix = { "" }
+ent-ClothingShoesBootsMagBlinding = magboots of blinding speed
+    .desc = These would look fetching on a fetcher like you.
+    .suffix = { "" }
+ent-ClothingShoesBootsMagSyndie = кроваво-красные магнитные сапоги
+    .desc = Созданные по технологии реверс-инжиниринга магнитные ботинки. Собственность Мародёров Горлекса.
+    .suffix = { "" }

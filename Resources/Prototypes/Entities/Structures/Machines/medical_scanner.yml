@@ -1,0 +1,57 @@
+﻿- type: entity
+  id: MedicalScanner
+  parent: BaseMachinePowered
+  name: medical scanner
+  description: A bulky medical scanner.
+  components:
+  - type: MedicalScanner
+  - type: Sprite
+    netsync: false
+    sprite: Structures/Machines/scanner.rsi
+    layers:
+    - state: open
+      map: ["enum.MedicalScannerVisualLayers.Machine"]
+    - state: idle_unlit
+      map: ["enum.MedicalScannerVisualLayers.Terminal"]
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.25,-0.5,0.25,0.5"
+      mass: 25
+      mask:
+      - MachineMask
+      layer:
+      - MachineLayer
+  - type: Construction
+    graph: Machine
+    node: machine
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Machine
+    board: MedicalScannerMachineCircuitboard
+  - type: MaterialStorage
+  - type: Wires
+    BoardName: "MedicalScanner"
+    LayoutId: MedicalScanner
+  - type: Appearance
+    visuals:
+    - type: MedicalScannerVisualizer
+  - type: ActivatableUI
+    key: enum.MedicalScannerUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+    - key: enum.MedicalScannerUiKey.Key
+      type: MedicalScannerBoundUserInterface
+  - type: Climbable

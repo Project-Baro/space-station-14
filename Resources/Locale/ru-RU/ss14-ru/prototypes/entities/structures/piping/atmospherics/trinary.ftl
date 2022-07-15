@@ -1,0 +1,15 @@
+ent-GasTrinaryBase = { ent-GasPipeBase }
+    .desc = { ent-GasPipeBase.desc }
+    .suffix = { "" }
+ent-GasFilter = газовый фильтр
+    .desc = Очень полезен для фильтрации газов.
+    .suffix = { "" }
+ent-GasFilterFlipped = газовый фильтр
+    .suffix = Перевёрнутый
+    .desc = { ent-GasFilter.desc }
+ent-GasMixer = газовый смеситель
+    .desc = Очень полезен для смешивания газов.
+    .suffix = { "" }
+ent-GasMixerFlipped = газовый смеситель
+    .suffix = Перевёрнутый
+    .desc = { ent-GasMixer.desc }

@@ -1,0 +1,15 @@
+ent-BaseCartridgeMagnum = cartridge (.40 magnum)
+    .desc = { ent-BaseCartridge.desc }
+    .suffix = { "" }
+ent-CartridgeMagnum = cartridge (.40 magnum)
+    .desc = { ent-BaseCartridgeMagnum.desc }
+    .suffix = { "" }
+ent-CartridgeMagnumHighVelocity = cartridge (.40 magnum high-velocity)
+    .desc = { ent-BaseCartridgeMagnum.desc }
+    .suffix = { "" }
+ent-CartridgeMagnumPractice = cartridge (.40 magnum practice)
+    .desc = { ent-BaseCartridgeMagnum.desc }
+    .suffix = { "" }
+ent-CartridgeMagnumRubber = cartridge (.40 magnum rubber)
+    .desc = { ent-BaseCartridgeMagnum.desc }
+    .suffix = { "" }

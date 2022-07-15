@@ -1,0 +1,9 @@
+ent-LockerMedicineFilled = { ent-LockerMedicine }
+    .suffix = Filled
+    .desc = { ent-LockerMedicine.desc }
+ent-LockerMedicalFilled = { ent-LockerMedical }
+    .suffix = Filled
+    .desc = { ent-LockerMedical.desc }
+ent-LockerChemistryFilled = { ent-LockerChemistry }
+    .suffix = Filled
+    .desc = { ent-LockerChemistry.desc }

@@ -1,0 +1,62 @@
+﻿- type: entity
+  id: CloningPod
+  parent: BaseMachinePowered
+  name: cloning pod
+  description: A Cloning Pod. 50% reliable.
+  components:
+  - type: CloningPod
+  - type: Sprite
+    netsync: false
+    sprite: Structures/Machines/cloning.rsi
+    layers:
+      - state: pod_0
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+    - shape:
+        !type:PhysShapeAabb
+        bounds: "-0.25,-0.5,0.25,0.5"
+      mass: 25
+      mask:
+      - MachineMask
+      layer:
+      - MachineLayer
+  - type: Construction
+    graph: Machine
+    node: machine
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Machine
+    board: CloningPodMachineCircuitboard
+  - type: MaterialStorage
+  - type: Wires
+    BoardName: "CloningPod"
+    LayoutId: CloningPod
+  - type: ApcPowerReceiver
+    powerLoad: 2000
+  - type: Appearance
+    visuals:
+      - type: GenericEnumVisualizer
+        key: enum.CloningPodVisuals.Status
+        layer: 0
+        states:
+          enum.CloningPodStatus.Cloning: pod_1
+          enum.CloningPodStatus.NoMind: pod_e
+          enum.CloningPodStatus.Gore: pod_g
+          enum.CloningPodStatus.Idle: pod_0
+  - type: ActivatableUI
+    key: enum.CloningPodUIKey.Key #Ejecting doesn't require power so I didn't give it that component
+  - type: UserInterface
+    interfaces:
+      - key: enum.CloningPodUIKey.Key
+        type: CloningPodBoundUserInterface
+  - type: Climbable

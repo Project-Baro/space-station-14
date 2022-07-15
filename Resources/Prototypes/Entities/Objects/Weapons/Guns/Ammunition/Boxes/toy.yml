@@ -1,0 +1,38 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BoxDonkSoftBase
+  name: foamdart box
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeRocket
+    capacity: 30
+  - type: Sprite
+    netsync: false
+
+# Boxes
+- type: entity
+  parent: BoxDonkSoftBase
+  id: BoxDonkSoftBox
+  name: foam dart box
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 40
+    proto: BulletDonkSoft
+  - type: Sprite
+    sprite: Objects/Fun/toys.rsi
+    state: foambox
+
+- type: entity
+  parent: BoxDonkSoftBase
+  id: BoxCartridgeCap
+  name: cap gun cartridge box
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 20
+    proto: CartridgeCap
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+    state: box

@@ -1,0 +1,640 @@
+#Burger bun
+- type: microwaveMealRecipe
+  id: RecipeBun
+  name: bun recipe
+  result: FoodBreadBun
+  time: 5
+  solids:
+    FoodDoughSlice: 1 # one third of a standard bread dough recipe
+
+#Burgers
+- type: microwaveMealRecipe
+  id: RecipeCheeseburger
+  name: cheeseburger recipe
+  result: FoodBurgerCheese
+  time: 5
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 1
+    FoodCheeseSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeClownBurger
+  name: clownburger recipe
+  result: FoodBurgerClown
+  time: 5
+  solids:
+    FoodBreadBun: 1
+    ClothingMaskClown: 1
+
+# - type: microwaveMealRecipe
+#   id: RecipeTofuBurger
+#   name: tofu burger recipe
+#   result: FoodBurgerTofu
+#   time: 5
+#   reagents:
+#     Flour: 15
+#   solids:
+#     FoodTofu: 1
+
+- type: microwaveMealRecipe
+  id: RecipeXenoburger
+  name: xenoburger recipe
+  result: FoodBurgerXeno
+  time: 5
+  solids:
+    FoodBreadBun: 1
+    FoodMeatXeno: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBearger
+  name: bearger recipe
+  result: FoodBurgerBear
+  time: 5
+  solids:
+    FoodBreadBun: 1
+    FoodMeatBear: 1
+
+- type: microwaveMealRecipe
+  id: RecipeFiletMigrawr
+  name: filet migrawr recipe
+  result: FoodMealBearsteak
+  time: 10
+  solids:
+    FoodMeatBear: 1
+  reagents:
+    Beer: 15
+
+#- type: microwaveMealRecipe
+#  id: RecipeSuperBiteBurger
+#  name: super bite burger recipe
+#  result: FoodSuperBiteBurger
+#  time: 20
+#  reagents:
+#    Flour: 15
+#    TableSalt: 5
+#    Blackpepper: 5
+#  solids:
+#    FoodMeat: 5
+#    FoodCheeseSlice: 3
+#    FoodTomato: 4
+#    FoodEgg: 2
+
+- type: microwaveMealRecipe
+  id: RecipeEmpoweredBurger
+  name: empowered burger recipe
+  result: FoodBurgerEmpowered
+  time: 5
+  solids:
+    FoodBreadBun: 1
+    SheetPlasma1: 2
+
+
+#Breads & Sandwiches
+- type: microwaveMealRecipe
+  id: RecipeBread
+  name: bread recipe
+  result: FoodBreadPlain
+  time: 15
+  solids:
+    FoodDough: 1
+
+# - type: microwaveMealRecipe
+#   id: RecipeSandwich
+#   name: sandwich recipe
+#   result: FoodSandwich
+#   time: 10
+#   solids:
+#     FoodBreadSlice: 2
+#     FoodMeatSteak: 1
+#     FoodCheeseSlice: 1
+
+# - type: microwaveMealRecipe
+#   id: RecipeToastedSandwich
+#   name: toasted sandwich recipe
+#   result: FoodToastedSandwich
+#   time: 5
+#   solids:
+#     FoodSandwich: 1
+
+# - type: microwaveMealRecipe
+#   id: RecipeGrilledCheese
+#   name: grilled cheese recipe
+#   result: FoodGrilledCheese
+#   time: 5
+#   solids:
+#     FoodBreadSlice: 2
+#     FoodCheeseSlice: 1
+
+#- type: microwaveMealRecipe
+#  id: RecipeBaguette
+#  name: baguette recipe
+#  result: FoodBaguette
+#  time: 10
+#  reagents:
+#    Flour: 15
+#    TableSalt: 1
+#    Blackpepper: 1
+
+- type: microwaveMealRecipe
+  id: RecipeCreamCheeseBread
+  name: cream cheese bread recipe
+  result: FoodBreadCreamcheese
+  time: 20
+  solids:
+    FoodDough: 1
+    FoodCheeseSlice: 2
+
+- type: microwaveMealRecipe
+  id: RecipeBananaBread
+  name: banana bread recipe
+  result: FoodBreadBanana
+  time: 25
+  solids:
+    FoodDough: 1
+    FoodBanana: 1
+
+- type: microwaveMealRecipe
+  id: RecipeMoldyBreadSlice
+  name: moldy bread slice recipe
+  result: FoodBreadMoldySlice
+  time: 5
+  solids:
+    FoodBreadPlainSlice: 1
+    FoodFlyAmanita: 1
+
+#Pizzas
+- type: microwaveMealRecipe
+  id: RecipeMargheritaPizza
+  name: margherita pizza recipe
+  result: FoodPizzaMargherita
+  time: 30
+  solids:
+    FoodDough: 1
+    FoodCheeseSlice: 1
+    FoodTomato: 4
+
+- type: microwaveMealRecipe
+  id: RecipeMushroomPizza
+  name: mushroom pizza recipe
+  result: FoodPizzaMushroom
+  time: 25
+  solids:
+    FoodDough: 1
+    FoodMushroom: 5
+
+- type: microwaveMealRecipe
+  id: RecipeMeatPizza
+  name: meat pizza recipe
+  result: FoodPizzaMeat
+  time: 30
+  solids:
+    FoodDough: 1
+    FoodMeat: 3
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+
+- type: microwaveMealRecipe
+  id: RecipeVegetablePizza
+  name: vegetable pizza recipe
+  result: FoodPizzaVegetable
+  time: 30
+  solids:
+    FoodDough: 1
+    FoodEggplant: 1
+    FoodCarrot: 1
+    FoodCorn: 1
+    FoodTomato: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDankPizza
+  name: dank pizza recipe
+  result: FoodPizzaDank
+  time: 30
+  solids:
+    FoodDough: 1
+    FoodAmbrosiaVulgaris: 3
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkpocketPizza
+  name: donk-pocket pizza recipe
+  result: FoodPizzaDonkpocket
+  time: 30
+  solids:
+    FoodDough: 1
+    FoodDonkpocketWarm: 3
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+
+#Italian
+# - type: microwaveMealRecipe
+#   id: RecipeSpaghetti
+#   name:  spaghetti recipe
+#   result: FoodSpaghetti
+#   time: 1
+#   reagents:
+#     Flour: 5
+
+# - type: microwaveMealRecipe
+#   id: RecipeBoiledSpaghetti
+#   name: boiled spaghetti recipe
+#   result: FoodSpaghettiBoiled
+#   time: 5
+#   reagents:
+#     Water: 5
+#   solids:
+#     FoodSpaghetti: 1
+
+- type: microwaveMealRecipe
+  id: RecipePastaTomato
+  name: pasta tomato recipe
+  result: FoodNoodles
+  time: 10
+  reagents:
+    Water: 5
+  solids:
+    FoodNoodlesBoiled: 1
+    FoodTomato: 2
+
+- type: microwaveMealRecipe
+  id: RecipeMeatballSpaghetti
+  name: spaghetti & meatballs recipe
+  result: FoodNoodlesMeatball
+  time: 10
+  reagents:
+    Water: 5
+  solids:
+    FoodNoodlesBoiled: 1
+    FoodMeatMeatball: 2
+
+#- type: microwaveMealRecipe
+#  id: RecipeCrabSpaghetti
+#  name: crab spaghetti recipe
+#  result: FoodCrabSpaghetti
+#  time: 10
+#  reagents:
+#    Water: 5
+#  solids:
+#    FoodCrabMeat: 2
+
+#- type: microwaveMealRecipe
+#  id: RecipeCopypasta
+#  name: copypasta recipe
+#  result: FoodCopypasta
+#  time: 10
+#  solids:
+#    FoodPastaTomato: 2
+
+# - type: microwaveMealRecipe
+#   id: RecipeMoMMISpaghetti
+#   name: mommi spaghetti recipe
+#   result: FoodMoMMISpaghetti
+#   time: 10
+#   reagents:
+#     Flour: 5
+#   solids:
+
+#- type: microwaveMealRecipe
+#  id: RecipeRisotto
+#  name: risotto recipe
+#  result: FoodRisotto
+#  time: 10
+#  reagents:
+#    Flour: 10 #This should be 10 units of rice.
+#    Wine: 5
+#  solids:
+#    FoodCheeseSlice: 1
+
+#- type: microwaveMealRecipe
+#  id: RecipeBruschetta
+#  name: bruschetta recipe
+#  result: FoodBruschetta
+#  time: 10
+#  reagents:
+#    Flour: 10
+#    TableSalt: 2
+#  solids:
+#    FoodGarlic: 1
+#    FoodCheeseSlice: 1
+#    FoodTomato: 1
+
+#- type: microwaveMealRecipe
+#  id: RecipeQuiche
+#  name: quiche recipe
+#  result: FoodQuiche
+#  time: 10
+#  solids:
+#    FoodBlueTomato: 1
+#    FoodGarlic: 1
+#    FoodEgg: 1
+#    FoodCheeseSlice: 1
+
+#- type: microwaveMealRecipe
+#  id: RecipeLasagna
+#  name: lasagna recipe
+#  result: FoodLasagna
+#  time: 15
+  # reagents:
+  #   TomatoJuice: 15
+#  solids:
+#    FoodFlatDough: 2
+#    FoodMeat: 2
+#    FoodEggplant: 1
+#    FoodCheeseSlice: 1
+
+#Soups & Stew
+- type: microwaveMealRecipe
+  id: RecipeMeatballSoup
+  name: meatball soup recipe
+  result: FoodSoupMeatball
+  time: 10
+  reagents:
+    Water: 10
+  solids:
+    FoodMeatMeatball: 1
+    FoodCarrot: 1
+    FoodPotato: 1
+
+- type: microwaveMealRecipe
+  id: RecipeNettleSoup
+  name: nettle soup recipe
+  result: FoodSoupNettle
+  time: 10
+  reagents:
+    Water: 10
+  solids:
+    Nettle: 1
+    FoodEgg: 1
+    FoodPotato: 1
+
+- type: microwaveMealRecipe
+  id: RecipeAmanitaJelly
+  name: amanita jelly recipe
+  result: FoodJellyAmanita
+  time: 10
+  reagents:
+    Water: 5
+    Vodka: 5
+  solids:
+    FoodFlyAmanita: 3
+
+#Other
+#- type: microwaveMealRecipe
+#  id: RecipeMeatSteak
+#  name: meat steak recipe
+#  result: FoodMeatCooked
+#  time: 10
+#  reagents:
+#    TableSalt: 1
+#    Blackpepper: 1
+#  solids:
+#    FoodMeat: 1
+
+- type: microwaveMealRecipe
+  id: RecipeCubanCarp
+  name: cuban carp recipe
+  result: FoodMealCubancarp
+  time: 15
+  solids:
+    FoodDough: 1
+    FoodCheeseSlice: 2
+    FoodChili: 1
+    FoodMeatFish: 2
+
+- type: microwaveMealRecipe
+  id: RecipeSashimi
+  name: sashimi recipe
+  result: FoodMealCubancarp
+  time: 15
+  reagents:
+    TableSalt: 1
+  solids:
+    FoodMeatFish: 2
+
+
+- type: microwaveMealRecipe
+  id: RecipeMisoColaSoup
+  name: salty sweet milocola soup recipe
+  result: DisgustingSweptSoup
+  time: 15
+  reagents:
+    Cola: 5
+  solids:
+    FoodSoupMiso: 1
+
+- type: microwaveMealRecipe
+  id: RecipeLoadedBakedPotato
+  name: loaded baked potato recipe
+  result: FoodMealPotatoLoaded
+  time: 10
+  solids:
+    FoodPotato: 1
+    FoodCheeseSlice: 1
+
+#  Reagent version (Reagents are broken)
+#- type: microwaveMealRecipe
+#  id: RecipeCandyCorn
+#  name: candy corn recipe
+#  result: FoodCandyCorn
+#  time: 5
+#  reagents:
+#    Sugar: 5
+#  solids:
+#    FoodCorn: 1
+
+- type: microwaveMealRecipe
+  id: RecipePopcorn
+  name: popcorn recipe
+  result: FoodSnackPopcorn
+  time: 5
+  solids:
+    FoodCorn: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBananaCreamPie
+  name: banana cream pie
+  result: FoodPieBananaCream
+  time: 15
+  solids:
+    FoodCakeBatter: 1 # should really be pie pastry or whatever. Good enough.
+    FoodBanana: 3
+
+- type: microwaveMealRecipe
+  id: RecipeAmanitaPie
+  name: amanita pie
+  result: FoodPieAmanita
+  time: 15
+  solids:
+    FoodCakeBatter: 1
+    FoodFlyAmanita: 1
+
+#Donks i guess
+- type: microwaveMealRecipe
+  id: RecipeWarmDonkpocket
+  name: warm donk pocket recipe
+  result: FoodDonkpocketWarm
+  time: 5
+  solids:
+    FoodDonkpocket: 1
+
+- type: microwaveMealRecipe
+  id: RecipeWarmDankpocket
+  name: warm dank pocket recipe
+  result: FoodDonkpocketDankWarm
+  time: 5
+  solids:
+    FoodDonkpocketDank: 1
+
+- type: microwaveMealRecipe
+  id: RecipeWarmDonkpocketSpicy
+  name: warm spicy donk-pocket recipe
+  result: FoodDonkpocketSpicyWarm
+  time: 5
+  solids:
+    FoodDonkpocketSpicy: 1
+
+- type: microwaveMealRecipe
+  id: RecipeWarmDonkpocketTeriyaki
+  name: warm teriyaki-pocket recipe
+  result: FoodDonkpocketTeriyakiWarm
+  time: 5
+  solids:
+    FoodDonkpocketTeriyaki: 1
+
+- type: microwaveMealRecipe
+  id: RecipeWarmDonkpocketPizza
+  name: warm pizza-pocket recipe
+  result: FoodDonkpocketPizzaWarm
+  time: 5
+  solids:
+    FoodDonkpocketPizza: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkpocketHonk
+  name: warm honk-pocket recipe
+  result: FoodDonkpocketHonkWarm
+  time: 5
+  solids:
+    FoodDonkpocketHonk: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkpocketBerry
+  name: warm berry-pocket recipe
+  result: FoodDonkpocketBerryWarm
+  time: 5
+  solids:
+    FoodDonkpocketBerry: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkpocketGondola
+  name: warm gondola-pocket recipe
+  result: FoodDonkpocketGondolaWarm
+  time: 5
+  solids:
+    FoodDonkpocketGondola: 1
+
+- type: microwaveMealRecipe
+  id: RecipeHotChili
+  name: hot chili recipe
+  result: FoodSoupChiliHot
+  time: 20
+  solids:
+    FoodChili: 1
+    FoodMeatCutlet: 1
+    FoodOnionSlice: 1
+    FoodTomato: 1
+
+- type: microwaveMealRecipe
+  id: RecipeChiliClown
+  name: chili con carnival recipe
+  result: FoodSoupChiliClown
+  time: 30
+  solids:
+    FoodChili: 1
+    FoodMeatCutlet: 1
+    FoodOnionSlice: 1
+    FoodTomato: 1
+    ClothingShoesClown: 1
+
+- type: microwaveMealRecipe
+  id: RecipeQueso
+  name: queso recipe
+  result: FoodMealQueso
+  time: 15
+  #todo Add blackpepper
+  #reagents:
+    #blackpepper: 5
+  solids:
+    FoodChili: 1
+    FoodCheeseSlice: 2
+
+- type: microwaveMealRecipe
+  id: RecipeEnchiladas
+  name: enchiladas recipe
+  result: FoodMealEnchiladas
+  time: 20
+  solids:
+    FoodChili: 2
+    FoodMeatCutlet: 1
+    FoodCorn: 1
+
+# SALADS: These should be moved out of the microwave as soon as possible
+- type: microwaveMealRecipe
+  id: RecipeHerbSalad
+  name: herb salad recipe
+  result: FoodSaladHerb
+  time: 5
+  solids:
+    FoodAmbrosiaVulgaris: 3
+    FoodApple: 1
+
+- type: microwaveMealRecipe
+  id: RecipeValidSalad
+  name: valid salad recipe
+  result: FoodSaladValid
+  time: 5
+  solids:
+    FoodAmbrosiaVulgaris: 3
+    FoodPotato: 1
+    FoodMeatMeatball: 1
+
+# NOT ACTUAL FOOD
+
+- type: microwaveMealRecipe
+  id: RecipeDriedTobacco
+  name: dried tobacco leaves recipe
+  result: LeavesTobaccoDried
+  time: 10
+  solids:
+    LeavesTobacco: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDriedCannabis
+  name: dried cannabis leaves recipe
+  result: LeavesCannabisDried
+  time: 10
+  solids:
+    LeavesCannabis: 1
+
+- type: microwaveMealRecipe
+  id: RecipeAloeCream
+  name: aloe cream recipe
+  result: AloeCream
+  time: 10
+  solids:
+    FoodAloe: 1
+
+# Suppermatter
+- type: microwaveMealRecipe
+  id: RecipeSuppermatter
+  name: suppermatter recipe
+  result: FoodCakeSuppermatter
+  time: 30
+  solids:
+    FoodCakeBatter: 2
+  reagents:
+    Sugar: 30
+    Nitrogen: 10
+    Plasma: 10

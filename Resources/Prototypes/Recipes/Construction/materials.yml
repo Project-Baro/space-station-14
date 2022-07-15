@@ -1,0 +1,51 @@
+﻿- type: construction
+  name: metal rod
+  id: MetalRod
+  graph: MetalRod
+  startNode: start
+  targetNode: MetalRod
+  category: Materials
+  description: A sturdy metal rod that can be used for various purposes.
+  icon: Objects/Materials/parts.rsi/rods.png
+  objectType: Item
+
+- type: construction
+  name: reinforced glass
+  id: SheetRGlass
+  graph: Glass
+  startNode: start
+  targetNode: SheetRGlass
+  category: Materials
+  icon: Objects/Materials/Sheets/glass.rsi/rglass.png
+  objectType: Item
+
+- type: construction
+  name: plasma glass
+  id: SheetPGlass
+  graph: Glass
+  startNode: start
+  targetNode: SheetPGlass
+  category: Materials
+  icon: Objects/Materials/Sheets/glass.rsi/pglass.png
+  objectType: Item
+
+- type: construction
+  name: reinforced plasma glass
+  id: SheetRPGlass
+  graph: Glass
+  startNode: start
+  targetNode: SheetRPGlass
+  category: Materials
+  icon: Objects/Materials/Sheets/glass.rsi/rpglass.png
+  objectType: Item
+
+- type: construction
+  name: durathread
+  id: MaterialDurathread
+  graph: Durathread
+  startNode: start
+  targetNode: MaterialDurathread
+  category: Materials
+  description: A high-quality thread used to make durable clothes.
+  icon: Objects/Materials/materials.rsi/durathread.png
+  objectType: Item

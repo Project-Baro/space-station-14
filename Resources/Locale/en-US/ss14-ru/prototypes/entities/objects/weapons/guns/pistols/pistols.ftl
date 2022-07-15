@@ -1,0 +1,15 @@
+ent-BaseWeaponPistol = BasePistol
+    .desc = A rooty tooty point and shooty.
+    .suffix = { "" }
+ent-WeaponPistolViper = viper
+    .desc = A small, easily concealable, but somewhat underpowered gun.
+    .suffix = { "" }
+ent-WeaponPistolHandmade = handmade pistol
+    .desc = Looks unreliable.
+    .suffix = { "" }
+ent-WeaponPistolCobra = cobra
+    .desc = A rugged, robust operator handgun with inbuilt silencer.
+    .suffix = { "" }
+ent-WeaponPistolMk58 = mk 58
+    .desc = A cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary.
+    .suffix = { "" }

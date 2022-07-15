@@ -1,0 +1,15 @@
+ent-BaseWeaponSniper = BaseWeaponSniper
+    .desc = Дерзай — налетай, целься и стреляй.
+    .suffix = { "" }
+ent-WeaponSniperMosin = Кардашев-Мосин
+    .desc = Оружие охоты, или бесконечной окопной войны.
+    .suffix = { "" }
+ent-WeaponSniperHristov = Христов
+    .desc = Портативная крупнокалиберная снайперская винтовка. Стреляет бронебойными 14,5-мм патронами.
+    .suffix = { "" }
+ent-WeaponPistolFlintlock = кремнёвый пистолет
+    .desc = Спутник пирата. Яррр!
+    .suffix = { "" }
+ent-Musket = мушкет
+    .desc = Это должно было оказаться в музее задолго до твоего рождения.
+    .suffix = { "" }

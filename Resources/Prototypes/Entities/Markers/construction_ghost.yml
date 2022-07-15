@@ -1,0 +1,11 @@
+- type: entity
+  name: construction ghost
+  id: constructionghost
+  noSpawn: true
+  components:
+  - type: Sprite
+    color: '#3F38'
+  - type: ConstructionGhost
+  - type: Physics
+  - type: Clickable
+  - type: InteractionOutline

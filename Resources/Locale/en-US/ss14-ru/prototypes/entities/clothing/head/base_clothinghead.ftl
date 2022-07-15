@@ -1,0 +1,15 @@
+ent-ClothingHeadBase = { ent-Clothing }
+    .desc = { ent-Clothing.desc }
+    .suffix = { "" }
+ent-HatBase = { ent-Clothing }
+    .desc = { ent-Clothing.desc }
+    .suffix = { "" }
+ent-ClothingHeadEVAHelmetBase = base space helmet
+    .desc = { ent-ClothingHeadBase.desc }
+    .suffix = { "" }
+ent-ClothingHeadHardsuitBase = base hardsuit helmet
+    .desc = { ent-ClothingHeadBase.desc }
+    .suffix = { "" }
+ent-ClothingHeadHardsuitWithLightBase = base hardsuit helmet with light
+    .desc = { ent-ClothingHeadHardsuitBase.desc }
+    .suffix = { "" }

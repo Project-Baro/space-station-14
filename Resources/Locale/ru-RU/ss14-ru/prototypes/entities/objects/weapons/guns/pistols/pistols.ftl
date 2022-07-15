@@ -1,0 +1,15 @@
+ent-BaseWeaponPistol = BasePistol
+    .desc = Дерзай — налетай, целься и стреляй.
+    .suffix = { "" }
+ent-WeaponPistolViper = Гадюка
+    .desc = Небольшой, легко скрываемый, но маломощный пистолет.
+    .suffix = { "" }
+ent-WeaponPistolCobra = Кобра
+    .desc = Пистолет суровых робастных агентов, с интегрированным глушителем.
+    .suffix = { "" }
+ent-WeaponPistolHandmade = самодельный пистолет
+    .desc = Выглядит ненадежно.
+    .suffix = { "" }
+ent-WeaponPistolMk58 = МК 58
+    .desc = Дешевый и распространённый пистолет, производимый дочерней компанией NanoTrasen.
+    .suffix = { "" }
