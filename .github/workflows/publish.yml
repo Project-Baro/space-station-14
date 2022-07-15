@@ -39,6 +39,12 @@ jobs:
         mkdir "release/${{ github.sha }}"
         mv release/*.zip "release/${{ github.sha }}"
 
+    - name: Upload artifacts to GitHub
+      uses: actions/upload-artifact@v3
+      with: 
+        name: Binaries
+        path: release/${{ github.sha }}
+
 #    - name: Upload files to mothership
 #      uses: appleboy/scp-action@master
 #      with:
