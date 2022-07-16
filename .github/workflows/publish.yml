@@ -38,16 +38,11 @@ jobs:
     - name: Update Build Info
       run: Tools/gen_build_info.py
 
-    - name: Shuffle files around
-      run: |
-        mkdir "release/${{ github.sha }}"
-        mv release/*.zip "release/${{ github.sha }}"
-
     - name: Upload artifacts to GitHub
       uses: actions/upload-artifact@v3
       with: 
         name: Binaries
-        path: release/${{ github.sha }}
+        path: release
         
     - name: Login to GitHub registry
       uses: docker/login-action@v2
