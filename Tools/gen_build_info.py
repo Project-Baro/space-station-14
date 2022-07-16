@@ -20,10 +20,10 @@ SERVER_FILES = [
 ]
 
 VERSION = os.environ['GITHUB_SHA']
-FORK_ID = "syndicate"
-BUILD_URL = f"https://builds.station14.ru/syndicate/builds/{{FORK_VERSION}}/{FILE}"
-MANIFEST_URL = f"https://builds.station14.ru/cdn/version/{{FORK_VERSION}}/manifest"
-MANIFEST_DOWNLOAD_URL = f"https://builds.station14.ru/cdn/version/{{FORK_VERSION}}/download"
+FORK_ID = "projectbaro"
+BUILD_URL = f"https://ss14.projectbaro.ru/{FILE}"
+MANIFEST_URL = f""
+MANIFEST_DOWNLOAD_URL = f""
 
 def main() -> None:
     client_file = os.path.join("release", FILE)
