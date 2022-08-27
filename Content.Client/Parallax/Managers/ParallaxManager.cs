@@ -38,16 +38,21 @@ internal sealed class ParallaxManager : IParallaxManager
 
     public Vector2 ParallaxAnchor { get; set; }
 
-    private CancellationTokenSource? _presentParallaxLoadCancel;
+    private readonly Dictionary<string, ParallaxLayerPrepared[]> _parallaxesLQ = new();
+    private readonly Dictionary<string, ParallaxLayerPrepared[]> _parallaxesHQ = new();
 
-    private ParallaxLayerPrepared[] _parallaxLayersHQ = {};
-    private ParallaxLayerPrepared[] _parallaxLayersLQ = {};
+    private readonly Dictionary<string, CancellationTokenSource> _loadingParallaxes = new();
 
     public ParallaxLayerPrepared[] ParallaxLayers => _configurationManager.GetCVar(CCVars.ParallaxLowQuality) ? _parallaxLayersLQ : _parallaxLayersHQ;
 
     public async void LoadParallax()
     {
-        await LoadParallaxByName("default");
+        if (_configurationManager.GetCVar(CCVars.ParallaxLowQuality))
+        {
+            return !_parallaxesLQ.TryGetValue(name, out var lq) ? Array.Empty<ParallaxLayerPrepared>() : lq;
+        }
+
+        return !_parallaxesHQ.TryGetValue(name, out var hq) ? Array.Empty<ParallaxLayerPrepared>() : hq;
     }
 
     private async Task LoadParallaxByName(string name)
@@ -70,6 +75,25 @@ internal sealed class ParallaxManager : IParallaxManager
             _parallaxLayersHQ = _parallaxLayersLQ = new ParallaxLayerPrepared[] {};
             return;
         }
+
+        if (!_parallaxesLQ.ContainsKey(name)) return;
+        _parallaxesLQ.Remove(name);
+        _parallaxesHQ.Remove(name);
+    }
+
+    public async void LoadDefaultParallax()
+    {
+        await LoadParallaxByName("Default");
+    }
+
+    public async Task LoadParallaxByName(string name)
+    {
+        if (_parallaxesLQ.ContainsKey(name) || _loadingParallaxes.ContainsKey(name)) return;
+
+        // Cancel any existing load and setup the new cancellation token
+        var token = new CancellationTokenSource();
+        _loadingParallaxes[name] = token;
+        var cancel = token.Token;
 
         // Begin (for real)
         Logger.InfoS("parallax", $"Loading parallax {name}");
@@ -95,13 +119,15 @@ internal sealed class ParallaxManager : IParallaxManager
                 lq = results[1];
             }
 
-            // Still keeping this check just in case.
-            if (_parallaxName == name)
-            {
-                _parallaxLayersHQ = hq;
-                _parallaxLayersLQ = lq;
-                Logger.InfoS("parallax", $"Loaded parallax {name}");
-            }
+            _loadingParallaxes.Remove(name, out _);
+
+            if (token.Token.IsCancellationRequested) return;
+
+            _parallaxesLQ[name] = layers[1];
+            _parallaxesHQ[name] = layers[0];
+
+            _sawmill.Info($"Loaded parallax {name}");
+
         }
         catch (Exception ex)
         {

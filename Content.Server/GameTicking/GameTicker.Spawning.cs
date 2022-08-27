@@ -3,7 +3,6 @@ using System.Linq;
 using Content.Server.Ghost;
 using Content.Server.Ghost.Components;
 using Content.Server.Players;
-using Content.Server.Roles;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
@@ -18,6 +17,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Job = Content.Server.Roles.Job;
 
 namespace Content.Server.GameTicking
 {
@@ -25,7 +25,7 @@ namespace Content.Server.GameTicking
     {
         private const string ObserverPrototypeName = "MobObserver";
 
-        [ViewVariables(VVAccess.ReadWrite), Obsolete("Due for removal when observer spawning is refactored.")]
+        [ViewVariables(VVAccess.ReadWrite), Obsolete("Due for removal when observer spawning is refactored.")] // See also: MindComponent's OnShutdown shitcode
         private EntityCoordinates _spawnPoint;
 
         // Mainly to avoid allocations.
@@ -86,7 +86,10 @@ namespace Content.Server.GameTicking
             var character = GetPlayerProfile(player);
 
             var jobBans = _roleBanManager.GetJobBans(player.UserId);
-            if (jobBans == null || (jobId != null && jobBans.Contains(jobId)))
+            if (jobBans == null || jobId != null && jobBans.Contains(jobId))
+                return;
+
+            if (jobId != null && !_playTimeTrackings.IsAllowed(player, jobId))
                 return;
             SpawnPlayer(player, character, station, jobId, lateJoin);
         }
@@ -124,9 +127,18 @@ namespace Content.Server.GameTicking
                 return;
             }
 
+            // Figure out job restrictions
+            var restrictedRoles = new HashSet<string>();
+
+            var getDisallowed = _playTimeTrackings.GetDisallowedJobs(player);
+            restrictedRoles.UnionWith(getDisallowed);
+
+            var jobBans = _roleBanManager.GetJobBans(player.UserId);
+            if(jobBans != null) restrictedRoles.UnionWith(jobBans);
+
             // Pick best job best on prefs.
             jobId ??= _stationJobs.PickBestAvailableJobWithPriority(station, character.JobPriorities, true,
-                _roleBanManager.GetJobBans(player.UserId));
+                restrictedRoles);
             // If no job available, stay in lobby, or if no lobby spawn as observer
             if (jobId is null)
             {
@@ -154,6 +166,8 @@ namespace Content.Server.GameTicking
             var jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
             var job = new Job(newMind, jobPrototype);
             newMind.AddRole(job);
+
+            _playTimeTrackings.PlayerRolesChanged(player);
 
             if (lateJoin)
             {
@@ -211,12 +225,11 @@ namespace Content.Server.GameTicking
 
         public void MakeJoinGame(IPlayerSession player, EntityUid station, string? jobId = null)
         {
-            if (!_playersInLobby.ContainsKey(player)) return;
-
-            if (!_prefsManager.HavePreferencesLoaded(player))
-            {
+            if (!_playerGameStatuses.ContainsKey(player.UserId))
                 return;
-            }
+
+            if (!_userDb.IsLoadComplete(player))
+                return;
 
             SpawnPlayer(player, station, jobId);
         }
@@ -246,8 +259,8 @@ namespace Content.Server.GameTicking
             EntitySystem.Get<SharedGhostSystem>().SetCanReturnToBody(ghost, false);
             newMind.TransferTo(mob);
 
-            _playersInLobby[player] = LobbyPlayerStatus.Observer;
-            RaiseNetworkEvent(GetStatusSingle(player, LobbyPlayerStatus.Observer));
+            _playerGameStatuses[player.UserId] = PlayerGameStatus.JoinedGame;
+            RaiseNetworkEvent(GetStatusSingle(player, PlayerGameStatus.JoinedGame));
         }
 
         #region Mob Spawning Helpers
@@ -261,7 +274,11 @@ namespace Content.Server.GameTicking
         #region Spawn Points
         public EntityCoordinates GetObserverSpawnPoint()
         {
-            var location = _spawnPoint;
+            // TODO rename this to TryGetObserverSpawnPoint to make it clear that the result might be invalid. Or at
+            // least try try more fallback values, like randomly spawning them in any available map or just creating a
+            // "we fucked up" map. Its better than dumping them into the void.
+
+            var location = _spawnPoint.IsValid(EntityManager) ? _spawnPoint : EntityCoordinates.Invalid;
 
             _possiblePositions.Clear();
 

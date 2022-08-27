@@ -13,6 +13,8 @@ using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
+using Content.Server.Shuttles.Events;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -300,6 +302,7 @@ public sealed partial class ShuttleSystem
                     comp.State = FTLState.Cooldown;
                     comp.Accumulator += FTLCooldown;
                     _console.RefreshShuttleConsoles(comp.Owner);
+                    RaiseLocalEvent(new HyperspaceJumpCompletedEvent());
                     break;
                 case FTLState.Cooldown:
                     RemComp<FTLComponent>(comp.Owner);
@@ -429,8 +432,8 @@ public sealed partial class ShuttleSystem
     {
         if (!Resolve(targetUid, ref targetXform) || targetXform.MapUid == null || !Resolve(component.Owner, ref xform)) return false;
 
-        var shuttleAABB = Comp<IMapGridComponent>(component.Owner).Grid.WorldAABB;
-        Box2? aabb = null;
+        var xformQuery = GetEntityQuery<TransformComponent>();
+        var shuttleAABB = Comp<IMapGridComponent>(component.Owner).Grid.LocalAABB;
 
         // Spawn nearby.
         foreach (var grid in _mapManager.GetAllMapGrids(targetXform.MapID))

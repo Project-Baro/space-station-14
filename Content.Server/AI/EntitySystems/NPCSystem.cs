@@ -31,9 +31,17 @@ namespace Content.Server.AI.EntitySystems
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<AiControllerComponent, MobStateChangedEvent>(OnMobStateChange);
-            SubscribeLocalEvent<AiControllerComponent, ComponentInit>(OnNPCInit);
-            SubscribeLocalEvent<AiControllerComponent, ComponentShutdown>(OnNPCShutdown);
+            // Makes physics etc debugging easier.
+#if DEBUG
+            _configurationManager.OverrideDefault(CCVars.NPCEnabled, false);
+#endif
+
+            _sawmill = Logger.GetSawmill("npc");
+            _sawmill.Level = LogLevel.Info;
+            InitializeUtility();
+            SubscribeLocalEvent<NPCComponent, MobStateChangedEvent>(OnMobStateChange);
+            SubscribeLocalEvent<NPCComponent, ComponentInit>(OnNPCInit);
+            SubscribeLocalEvent<NPCComponent, ComponentShutdown>(OnNPCShutdown);
             _configurationManager.OnValueChanged(CCVars.NPCEnabled, SetEnabled, true);
 
             var maxUpdates = _configurationManager.GetCVar(CCVars.NPCMaxUpdates);

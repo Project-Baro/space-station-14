@@ -278,6 +278,7 @@ namespace Content.Shared.Movement.Systems
             {
                 // This should have its event run during island solver soooo
                 xform.DeferUpdates = true;
+                
                 xform.LocalRotation = xform.GridUid != null
                     ? total.ToWorldAngle()
                     : worldTotal.ToWorldAngle();
@@ -297,7 +298,10 @@ namespace Content.Shared.Movement.Systems
             if (!weightless || touching)
                 Accelerate(ref velocity, in worldTotal, accel, frameTime);
 
-            _physics.SetLinearVelocity(physicsComponent, velocity);
+            PhysicsSystem.SetLinearVelocity(physicsComponent, velocity);
+
+            // Ensures that players do not spiiiiiiin
+            PhysicsSystem.SetAngularVelocity(physicsComponent, 0);
         }
 
         private void Friction(float frameTime, float friction, ref Vector2 velocity)
@@ -427,10 +431,10 @@ namespace Content.Shared.Movement.Systems
                 return true;
             }
 
-            return TryGetFootstepSound(gridId!.Value, coordinates, out variation, out sound);
+            return TryGetFootstepSound(coordinates, shoes != null, out sound);
         }
 
-        private bool TryGetFootstepSound(EntityUid gridId, EntityCoordinates coordinates, out float variation, [NotNullWhen(true)] out string? sound)
+        private bool TryGetFootstepSound(EntityCoordinates coordinates, bool haveShoes, [NotNullWhen(true)] out SoundSpecifier? sound)
         {
             variation = 0f;
             sound = null;
@@ -453,10 +457,8 @@ namespace Content.Shared.Movement.Systems
 
             // Walking on a tile.
             var def = (ContentTileDefinition) _tileDefinitionManager[tile.Tile.TypeId];
-            sound = def.FootstepSounds?.GetSound();
-            variation = FootstepVariation;
-
-            return !string.IsNullOrEmpty(sound);
+            sound = haveShoes ? def.FootstepSounds : def.BarestepSounds;
+            return sound != null;
         }
     }
 }

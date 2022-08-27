@@ -132,7 +132,7 @@ namespace Content.Client.Storage.UI
                         new Label
                         {
                             Align = Label.AlignMode.Right,
-                            Text = item?.Size.ToString() ?? Loc.GetString("no-item-size")
+                            Text = item?.Size.ToString() ?? Loc.GetString("comp-storage-no-item-size"),
                         }
                     }
             });

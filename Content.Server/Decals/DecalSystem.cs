@@ -17,7 +17,7 @@ namespace Content.Server.Decals
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly ITileDefinitionManager _tileDefMan = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly ChunkingSystem _chunking = default!;
 
         private readonly Dictionary<EntityUid, HashSet<Vector2i>> _dirtyChunks = new();
         private readonly Dictionary<IPlayerSession, Dictionary<EntityUid, HashSet<Vector2i>>> _previousSentChunks = new();
@@ -404,7 +404,7 @@ namespace Content.Server.Decals
 
                 var chunksInRange = GetChunksForSession(playerSession);
                 var staleChunks = _chunkViewerPool.Get();
-                var previouslySent = _previousSentChunks[playerSession];
+                var previouslySent = _previousSentChunks.GetOrNew(playerSession);
 
                 // Get any chunks not in range anymore
                 // Then, remove them from previousSentChunks (for stuff like grids out of range)
