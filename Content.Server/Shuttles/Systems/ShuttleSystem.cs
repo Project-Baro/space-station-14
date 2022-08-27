@@ -38,6 +38,7 @@ namespace Content.Server.Shuttles.Systems
             InitializeEmergencyConsole();
             InitializeEscape();
             InitializeFTL();
+            InitializeIFF();
 
             SubscribeLocalEvent<ShuttleComponent, ComponentAdd>(OnShuttleAdd);
             SubscribeLocalEvent<ShuttleComponent, ComponentStartup>(OnShuttleStartup);

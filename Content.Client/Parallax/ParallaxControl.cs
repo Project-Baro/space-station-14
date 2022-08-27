@@ -31,7 +31,7 @@ public sealed class ParallaxControl : Control
         foreach (var layer in _parallaxManager.ParallaxLayers)
         {
             var tex = layer.Texture;
-            var texSize = tex.Size * layer.Config.Scale.Floored();
+            var texSize = (tex.Size.X * (int) Size.X, tex.Size.Y * (int) Size.X) * layer.Config.Scale.Floored() / 1920;
             var ourSize = PixelSize;
 
             if (layer.Config.Tiled)

@@ -33,6 +33,7 @@ using Content.Shared.Inventory;
 using Content.Shared.MobState;
 using Content.Shared.MobState.Components;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Tabletop.Components;
@@ -63,7 +64,8 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly VomitSystem _vomitSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly WeldableSystem _weldableSystem = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
 
     // All smite verbs have names so invokeverb works.
     private void AddSmiteVerbs(GetVerbsEvent<Verb> args)
@@ -544,5 +546,157 @@ public sealed partial class AdminVerbSystem
             Message = "Grants them anti-gravity.",
         };
         args.Verbs.Add(noGravity);
+
+        Verb reptilian = new()
+        {
+            Text = "Reptilian Species Swap",
+            Category = VerbCategory.Smite,
+            IconTexture = "/Textures/Objects/Fun/toys.rsi/plushie_lizard.png",
+            Act = () =>
+            {
+                _polymorphableSystem.PolymorphEntity(args.Target, "AdminLizardSmite");
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-reptilian-species-swap-description"),
+        };
+        args.Verbs.Add(reptilian);
+
+        Verb locker = new()
+        {
+            Text = "Locker stuff",
+            Category = VerbCategory.Smite,
+            IconTexture = "/Textures/Structures/Storage/closet.rsi/generic.png",
+            Act = () =>
+            {
+                var xform = Transform(args.Target);
+                var locker = Spawn("ClosetMaintenance", xform.Coordinates);
+                if (TryComp<EntityStorageComponent>(locker, out var storage))
+                {
+                    _entityStorageSystem.ToggleOpen(args.Target, locker, storage);
+                    _entityStorageSystem.Insert(args.Target, locker, storage);
+                    _entityStorageSystem.ToggleOpen(args.Target, locker, storage);
+                }
+                _weldableSystem.ForceWeldedState(locker, true);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-locker-stuff-description"),
+        };
+        args.Verbs.Add(locker);
+
+        Verb headstand = new()
+        {
+            Text = "Headstand",
+            Category = VerbCategory.Smite,
+            IconTexture = "/Textures/Interface/VerbIcons/refresh.svg.192dpi.png",
+            Act = () =>
+            {
+                EnsureComp<HeadstandComponent>(args.Target);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-headstand-description"),
+        };
+        args.Verbs.Add(headstand);
+
+        Verb zoomIn = new()
+        {
+            Text = "Zoom in",
+            Category = VerbCategory.Smite,
+            IconTexture = "/Textures/Interface/AdminActions/zoom.png",
+            Act = () =>
+            {
+                var eye = EnsureComp<EyeComponent>(args.Target);
+
+                eye.Zoom *= Vector2.One * 0.2f;
+
+                Dirty(eye);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-zoom-in-description"),
+        };
+        args.Verbs.Add(zoomIn);
+
+        Verb flipEye = new()
+        {
+            Text = "Flip eye",
+            Category = VerbCategory.Smite,
+            IconTexture = "/Textures/Interface/AdminActions/flip.png",
+            Act = () =>
+            {
+                var eye = EnsureComp<EyeComponent>(args.Target);
+
+                eye.Zoom *= -1;
+
+                Dirty(eye);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-flip-eye-description"),
+        };
+        args.Verbs.Add(flipEye);
+
+        Verb runWalkSwap = new()
+        {
+            Text = "Run Walk Swap",
+            Category = VerbCategory.Smite,
+            IconTexture = "/Textures/Interface/AdminActions/run-walk-swap.png",
+            Act = () =>
+            {
+                var movementSpeed = EnsureComp<MovementSpeedModifierComponent>(args.Target);
+                (movementSpeed.BaseSprintSpeed, movementSpeed.BaseWalkSpeed) = (movementSpeed.BaseWalkSpeed, movementSpeed.BaseSprintSpeed);
+
+                Dirty(movementSpeed);
+
+                _popupSystem.PopupEntity(Loc.GetString("admin-smite-run-walk-swap-prompt"), args.Target,
+                    Filter.Entities(args.Target), PopupType.LargeCaution);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-run-walk-swap-description"),
+        };
+        args.Verbs.Add(runWalkSwap);
+
+        Verb backwardsAccent = new()
+        {
+            Text = "Speak Backwards",
+            Category = VerbCategory.Smite,
+            IconTexture = "/Textures/Interface/AdminActions/help-backwards.png",
+            Act = () =>
+            {
+                EnsureComp<BackwardsAccentComponent>(args.Target);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-speak-backwards-description"),
+        };
+        args.Verbs.Add(backwardsAccent);
+
+        Verb disarmProne = new()
+        {
+            Text = "Disarm Prone",
+            Category = VerbCategory.Smite,
+            IconTexture = "/Textures/Interface/Actions/disarm.png",
+            Act = () =>
+            {
+                EnsureComp<DisarmProneComponent>(args.Target);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-disarm-prone-description"),
+        };
+        args.Verbs.Add(disarmProne);
+
+        Verb superSpeed = new()
+        {
+            Text = "Super speed",
+            Category = VerbCategory.Smite,
+            IconTexture = "/Textures/Interface/AdminActions/super_speed.png",
+            Act = () =>
+            {
+                var movementSpeed = EnsureComp<MovementSpeedModifierComponent>(args.Target);
+                _movementSpeedModifierSystem?.ChangeBaseSpeed(args.Target, 400, 8000, 40, movementSpeed);
+
+                _popupSystem.PopupEntity(Loc.GetString("admin-smite-super-speed-prompt"), args.Target,
+                    Filter.Entities(args.Target), PopupType.LargeCaution);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-super-speed-description"),
+        };
+        args.Verbs.Add(superSpeed);
     }
 }

@@ -55,6 +55,7 @@ namespace Content.Shared.Buckle.Components
     public enum StrapVisuals : byte
     {
         RotationAngle,
-        BuckledState
+        BuckledState,
+        State
     }
 }

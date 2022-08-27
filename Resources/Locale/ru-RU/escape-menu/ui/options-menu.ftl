@@ -15,6 +15,7 @@ ui-options-midi-volume = MIDI (Инструменты) громкость:
 ui-options-ambience-volume = Громкость окружения:
 ui-options-ambience-max-sounds = Кол-во одновременных звуков окружения:
 ui-options-lobby-music = Музыка в лобби
+ui-options-restart-sounds = Звуки перезапуска раунда
 ui-options-event-music = Музыка событий
 ui-options-admin-sounds = Музыка админов
 ui-options-station-ambience = Эмбиент станции
@@ -147,3 +148,8 @@ ui-options-function-loadout7 = 7 страница хотбара
 ui-options-function-loadout8 = 8 страница хотбара
 ui-options-function-loadout9 = 9 страница хотбара
 ui-options-net-interp-ratio = Сетевое сглаживание
+ui-options-net-interp-ratio-tooltip =
+    Увеличение этого параметра, как правило, делает игру
+    более устойчивой к потере пакетов, однако при этом
+    это так же добавляет немного больше задержки и
+    требует от клиента предсказывать больше будущих тиков.

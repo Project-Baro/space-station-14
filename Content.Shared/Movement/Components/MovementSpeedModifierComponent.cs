@@ -38,10 +38,58 @@ namespace Content.Shared.Movement.Components
             }
         }
 
-        [DataField("baseWalkSpeed")]
+        /// <summary>
+        /// Minimum speed a mob has to be moving before applying movement friction.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("minimumFrictionSpeed")]
+        public float MinimumFrictionSpeed = DefaultMinimumFrictionSpeed;
+
+        /// <summary>
+        /// The negative velocity applied for friction when weightless and providing inputs.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("weightlessFriction")]
+        public float WeightlessFriction = DefaultWeightlessFriction;
+
+        /// <summary>
+        /// The negative velocity applied for friction when weightless and not providing inputs.
+        /// This is essentially how much their speed decreases per second.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("weightlessFrictionNoInput")]
+        public float WeightlessFrictionNoInput = DefaultWeightlessFrictionNoInput;
+
+        /// <summary>
+        /// The movement speed modifier applied to a mob's total input velocity when weightless.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("weightlessModifier")]
+        public float WeightlessModifier = DefaultWeightlessModifier;
+
+        /// <summary>
+        /// The acceleration applied to mobs when moving and weightless.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("weightlessAcceleration")]
+        public float WeightlessAcceleration = DefaultWeightlessAcceleration;
+
+        /// <summary>
+        /// The acceleration applied to mobs when moving.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("acceleration")]
+        public float Acceleration = DefaultAcceleration;
+
+        /// <summary>
+        /// The negative velocity applied for friction.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("friction")]
+        public float Friction = DefaultFriction;
+
+        /// <summary>
+        /// The negative velocity applied for friction.
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("frictionNoInput")] public float? FrictionNoInput = null;
+
+        [ViewVariables(VVAccess.ReadWrite), DataField("baseWalkSpeed")]
         public float BaseWalkSpeed { get; set; } = DefaultBaseWalkSpeed;
 
-        [DataField("baseSprintSpeed")]
+        [ViewVariables(VVAccess.ReadWrite), DataField("baseSprintSpeed")]
         public float BaseSprintSpeed { get; set; } = DefaultBaseSprintSpeed;
 
         [ViewVariables]
